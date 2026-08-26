@@ -1,0 +1,8 @@
+﻿title: "프리미엄 인연 & 라이프스타일 매거진"
+description: "결혼정보회사, 매칭 테스트, 프리미엄 라이프스타일 정보를 제공합니다."
+url: "https://match.enjoy-onepage.com"
+theme: minima
+markdown: kramdown
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
