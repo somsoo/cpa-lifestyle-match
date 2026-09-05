@@ -98,7 +98,7 @@ def generate_post(campaign, keyword):
     profile_prompt = f"당신은 30~50대를 위한 전문 '성숙한 인연과 결혼 문화를 선도하는 라이프 매칭 컨설턴트'입니다. 주요 전문 분야: '검증된 신원 인증과 매칭 시스템, 전문직/재혼 맞춤 상담, 만남 성사율을 높이는 대화법'. '{keyword}'의 타겟 유저가 가장 갈망하는 혜택과 현실적 고민이 무엇인지 전문가의 시각에서 3문장으로 날카롭게 분석하세요."
     profiling = generate_with_retry(profile_prompt)
     
-    outline_prompt = f"'{profiling}'을 바탕으로 '{keyword}'에 대한 정보성 블로그 포스팅 목차(H2 3개)를 마크다운으로 작성하세요."
+    outline_prompt = f"'{profiling}'을 바탕으로 '{keyword}'에 대한 정보성 블로그 포스팅 목차(소제목 3~4개)를 마크다운으로 작성하세요."
     outline = generate_with_retry(outline_prompt)
 
     draft_prompt = f"""
@@ -127,7 +127,9 @@ def generate_post(campaign, keyword):
     """
     final_text = generate_with_retry(rewrite_prompt)
     
-    final_text = re.sub(r'(?i)^(?:#+\s*)?H[23]:\s*', '', final_text, flags=re.MULTILINE)
+    final_text = re.sub(r'(?im)^(\s*#{2,4}\s*(?:\*\*)?)H[234]\s*[:.]?\s*', r'\1', final_text)
+    final_text = re.sub(r'(?im)^(\s*#{2,4}\s*)\*\*(H[234]\s*[:.]?\s*)?', r'\1', final_text)
+    final_text = re.sub(r'(?im)^(\s*#{2,4}\s+[^\n*]+)\*\*\s*$', r'\1', final_text)
     final_text = re.sub(r'^---.*?---\s*', '', final_text, flags=re.DOTALL)
 
 
