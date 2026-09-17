@@ -1,4 +1,4 @@
-﻿title: "프리미엄 인연 & 라이프스타일 매거진"
+title: "프리미엄 인연 & 라이프스타일 매거진"
 description: "결혼정보회사, 매칭 테스트, 프리미엄 라이프스타일 정보를 제공합니다."
 url: "https://match.enjoy-onepage.com"
 theme: minima
@@ -6,3 +6,12 @@ markdown: kramdown
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+baseurl: ""
+permalink: /:year/:month/:day/:title/
+exclude:
+  - AI_MAINTENANCE_RULES.md
+  - POST_LOG.md
+  - used_keywords.txt
+  - Gemfile
+  - Gemfile.lock
+  - README.md
